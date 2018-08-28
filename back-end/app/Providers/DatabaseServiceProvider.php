@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class DatabaseServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -13,6 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+        $this->app->bind('App\Interfaces\SistemaInterface', 'App\Repositories\SistemaRepository');
     }
 }
+
+
