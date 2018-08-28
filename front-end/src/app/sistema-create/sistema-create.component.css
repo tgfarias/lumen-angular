@@ -1,0 +1,16 @@
+button{
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.card-header span{
+    padding-left: 75%;
+    color: red;
+    font-size: 12px;
+}
+
+.control-label span{
+    color: red;
+}

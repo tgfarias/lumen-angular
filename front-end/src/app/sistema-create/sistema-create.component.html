@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="card bg-default">
+    <div class="card-header">Manter Sistema <span>* Campo Obrigatório</span></div>
+    <form class="">
+      <div class="card-body">
+        <div class="form-group row">
+          <label for="descricao" class="col-sm-6 control-label">Descrição <span>*</span></label>
+          <div class="col-sm-6">
+            <input type="text" id="descricao" name="descricao" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="sigla" class="col-sm-6 control-label">Sigla <span>*</span></label>
+          <div class="col-sm-6">
+            <input type="text" id="sigla" name="sigla" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-sm-6 control-label">E-mail de atendimento do sistema</label>
+          <div class="col-sm-6">
+            <input type="email" id="email" name="email" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="url" class="col-sm-6 control-label">URL</label>
+          <div class="col-sm-6">
+            <input type="url" id="url" name="url" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-sm">
+            <button class="btn" type="button" [routerLink]="['/']">Voltar <i class="fa fa-arrow-left"></i></button>
+          </div>
+          <div class="col-sm text-right">
+            <button class="btn" type="submit">Salvar <i class="fa fa-save"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

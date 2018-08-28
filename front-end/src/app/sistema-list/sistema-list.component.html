@@ -1,0 +1,26 @@
+<fieldset>
+  <legend></legend>
+</fieldset>
+<h1>
+  My Contacts
+</h1>
+<div>
+  <table style="width:100%">
+    <tr>
+      <th>#</th>
+      <th>Descrição</th>
+      <th>SIGLA</th>
+      <th>Email</th>
+      <th>Url</th>
+      <th>Status</th>
+    </tr>
+    <tr *ngFor="let sistema of sistemas">
+      <td> {{ sistema.id }} </td>
+      <td> {{ sistema.descricao }} </td>
+      <td> {{ sistema.sigla }} </td>
+      <td> {{ sistema.email }} </td>
+      <td> {{ sistema.url }} </td>
+      <td> {{ getStatus(sistema.status) }} </td>
+    </tr>
+  </table>
+</div>

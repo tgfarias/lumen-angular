@@ -1,0 +1,12 @@
+button{
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.card-header{
+    font-weight: bold;
+    font-size: 14px;
+    color:grey;
+}
