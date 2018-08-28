@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sistema-search',
@@ -6,14 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sistema-search.component.css']
 })
 export class SistemaSearchComponent implements OnInit {
+  rForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+    this.rForm = fb.group({
+      'descricao': '',
+      'sigla': '',
+      'email' : [null, Validators.email]
+    });
+  }
 
   ngOnInit() {
   }
 
-  novo(){
-    
+  novo() {
+
+  }
+
+  search() {
+    console.log(this.rForm.value);
   }
 
 }

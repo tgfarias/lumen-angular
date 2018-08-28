@@ -9,23 +9,23 @@ import { Sistema } from '../sistema';
 })
 export class SistemaListComponent implements OnInit {
   public sistemas:  Array<Sistema> = [];
-  constructor(private api:SistemasService) { }
+  constructor(private api: SistemasService) { }
 
   ngOnInit() {
     this.getSistemas();
   }
 
-  public getSistemas(){
+  public getSistemas() {
     this.api.getSistemas().subscribe(
-      (data : Array<Sistema>) => {
+      (data: Array<Sistema>) => {
         this.sistemas = data;
         console.log(data);
       }
     );
   }
 
-  public getStatus(status){
-    return status == 1 ? "Ativo" : "Cancelado"; 
+  public getStatus(status) {
+    return status === 1 ? 'Ativo' : 'Cancelado';
   }
 
 }

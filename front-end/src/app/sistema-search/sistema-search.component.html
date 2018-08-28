@@ -1,30 +1,33 @@
 <div class="container">
   <div class="card bg-default">
     <div class="card-header">Pesquisar Sistema</div>
-    <form class="">
+    <form [formGroup]="rForm" (ngSubmit)="search()">
       <div class="card-body">
         <div class="form-group row">
           <label for="descricao" class="col-sm-6 control-label">Descrição</label>
           <div class="col-sm-6">
-            <input type="text" id="descricao" name="descricao" class="form-control" />
+            <input type="text" id="descricao" formControlName="descricao" class="form-control" />
           </div>
         </div>
         <div class="form-group row">
           <label for="sigla" class="col-sm-6 control-label">Sigla</label>
           <div class="col-sm-6">
-            <input type="text" id="sigla" name="sigla" class="form-control" />
+            <input type="text" id="sigla" formControlName="sigla" class="form-control" />
           </div>
         </div>
         <div class="form-group row">
           <label for="email" class="col-sm-6 control-label">E-mail de atendimento do sistema</label>
           <div class="col-sm-6">
-            <input type="email" id="email" name="email" class="form-control" />
+            <input type="email" id="email" formControlName="email" class="form-control" />
+          </div>
+          <div id="error" *ngIf="!rForm.controls['email'].valid">
+            * Email inválido
           </div>
         </div>
       </div>
       <div class="card-footer">
         <div class="text-right">
-          <button class="btn" type="submit">Pesquisar <i class="fa fa-search"></i></button>
+          <button class="btn" type="submit" [disabled]="!rForm.valid" >Pesquisar <i class="fa fa-search"></i></button>
           <button class="btn" type="reset">Limpar <i class="fa fa-minus-circle"></i></button>
           <button class="btn" type="button" [routerLink]="['/sistema/create/']">Novo Sistema <i class="fa fa-file"></i></button>
         </div>

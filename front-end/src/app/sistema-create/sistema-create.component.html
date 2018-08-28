@@ -1,30 +1,45 @@
 <div class="container">
+  <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="saved">
+    {{success}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   <div class="card bg-default">
     <div class="card-header">Manter Sistema <span>* Campo Obrigatório</span></div>
-    <form class="">
+    <form [formGroup]="rForm" (ngSubmit)="save()">
       <div class="card-body">
         <div class="form-group row">
           <label for="descricao" class="col-sm-6 control-label">Descrição <span>*</span></label>
           <div class="col-sm-6">
-            <input type="text" id="descricao" name="descricao" class="form-control" />
+            <input type="text" id="descricao" formControlName="descricao" class="form-control" />
+          </div>
+          <div id="error" *ngIf="!rForm.controls['descricao'].valid && rForm.controls['descricao'].touched">
+            * Dados obrigatórios não informados.
           </div>
         </div>
         <div class="form-group row">
           <label for="sigla" class="col-sm-6 control-label">Sigla <span>*</span></label>
           <div class="col-sm-6">
-            <input type="text" id="sigla" name="sigla" class="form-control" />
+            <input type="text" id="sigla" formControlName="sigla" class="form-control" />
+          </div>
+          <div id="error" *ngIf="!rForm.controls['sigla'].valid && rForm.controls['sigla'].touched">
+            * Dados obrigatórios não informados.
           </div>
         </div>
         <div class="form-group row">
           <label for="email" class="col-sm-6 control-label">E-mail de atendimento do sistema</label>
           <div class="col-sm-6">
-            <input type="email" id="email" name="email" class="form-control" />
+            <input type="email" id="email" formControlName="email" class="form-control" />
+          </div>
+          <div id="error" *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">
+            * Email inválido
           </div>
         </div>
         <div class="form-group row">
           <label for="url" class="col-sm-6 control-label">URL</label>
           <div class="col-sm-6">
-            <input type="url" id="url" name="url" class="form-control" />
+            <input type="url" id="url" formControlName="url" class="form-control" />
           </div>
         </div>
       </div>
@@ -34,10 +49,11 @@
             <button class="btn" type="button" [routerLink]="['/']">Voltar <i class="fa fa-arrow-left"></i></button>
           </div>
           <div class="col-sm text-right">
-            <button class="btn" type="submit">Salvar <i class="fa fa-save"></i></button>
+            <button class="btn" type="submit" [disabled]="!rForm.valid">Salvar <i class="fa fa-save"></i></button>
           </div>
         </div>
       </div>
     </form>
   </div>
 </div>
+

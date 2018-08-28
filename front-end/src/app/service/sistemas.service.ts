@@ -1,12 +1,13 @@
+import { Sistema } from './../sistema';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from  '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class SistemasService {
-  public serverpath: string = 'http://localhost:8000/';
+  public serverpath = 'http://apitem.local/';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
@@ -15,7 +16,34 @@ export class SistemasService {
     private http: HttpClient
   ) { }
 
-  getSistemas(){
+  getSistemas() {
     return  this.http.get(this.serverpath + 'sistemas/list', { headers : this.headers});
+  }
+
+  saveSistema(sistema: Sistema) {
+    const h = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
+    });
+
+    console.log(sistema);
+
+
+    return this.http.post<any>(this.serverpath + 'sistemas/create',
+      { descricao: sistema.descricao,
+        sigla: sistema.sigla,
+        email: sistema.email,
+        url: sistema.url },
+      {headers: h} );
+  }
+
+
+  searchSistemas(params: any) {
+    const h = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
+    });
+
+    return this.http.post<Sistema[]>(this.serverpath + 'sistemas/search', params, {headers: h} );
   }
 }

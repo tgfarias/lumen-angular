@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Sistema } from '../sistema';
+import { SistemasService } from '../service/sistemas.service';
 
 @Component({
   selector: 'app-sistema-create',
@@ -6,12 +9,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sistema-create.component.css']
 })
 export class SistemaCreateComponent implements OnInit {
-
-  constructor() { }
+  sis: Sistema;
+  public saved = false;
+  success = 'Operação realizada com sucesso.';
+  rForm: FormGroup;
+  constructor(private fb: FormBuilder, private api: SistemasService) {
+    this.rForm = fb.group({
+      'descricao': new FormControl('', {validators: [Validators.required], updateOn: 'blur'} ),
+      'sigla': new FormControl('', {validators: [Validators.required, Validators.maxLength(10)], updateOn: 'blur'} ),
+      'email': new FormControl('', {validators: [Validators.email], updateOn: 'blur'} ),
+      'url' : new FormControl(),
+     });
+  }
 
   ngOnInit() {
   }
 
-  
+  save() {
+    const data = this.rForm.value;
+    this.sis = new Sistema(
+      data.descricao,
+      data.sigla,
+      data.email,
+      data.url
+    );
+
+
+    this.api.saveSistema(this.sis).subscribe(
+      res => {
+        console.log(res);
+      if (res.cod_sistema) {
+        this.saved = true;
+        this.rForm.reset();
+      }}
+    );
+  }
+
+
 
 }

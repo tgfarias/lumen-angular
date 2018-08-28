@@ -14,3 +14,15 @@ button{
 .control-label span{
     color: red;
 }
+
+#error{
+  font-weight: bold;
+  font-size: 11px;
+  color: red;
+  padding-left: 30px;
+}
+
+/* div .bg-success .card-header{
+  font-weight: bold;
+  color: white;
+} */

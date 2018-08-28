@@ -20,7 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
