@@ -24,8 +24,8 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/sistemas/list', 'SistemasController@list');
-// $router->post('/sistemas/{params}', 'SistemasController@find');
-// $router->post('/sistemas/save', 'SistemasController@save');
+$router->post('/sistemas/search', 'SistemasController@search');
+$router->post('/sistemas/create', 'SistemasController@create');
 // $router->get('/get/sistemas/{id}', 'SistemasController@detail');
 // $router->put('/put/sistemas/update', 'SistemasController@update');
 // $router->delete('/delete/sistemas/{id}', 'SistemasController@delete');

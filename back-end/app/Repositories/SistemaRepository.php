@@ -8,7 +8,7 @@ use App\Models\Sistema;
 class SistemaRepository implements SistemaInterface{
 
     public function create($params){
-        $sistema = Sistema::create($params);
+        $sistema = Sistema::create( $params );
 	 	return $sistema;
     }
 
@@ -18,6 +18,10 @@ class SistemaRepository implements SistemaInterface{
     }
 
     public function search($params){
-        
+
+        $sistema = Sistema::where($params)
+        ->get();
+
+        return $sistema;
     }
 }

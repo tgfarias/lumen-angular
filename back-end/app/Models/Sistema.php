@@ -14,6 +14,7 @@ class Sistema extends Model {
 	protected $fillable = [
 		'cod_sistema',
 		'descricao',
+		'sigla',
 		'email',
 		'url',
 		'status',
