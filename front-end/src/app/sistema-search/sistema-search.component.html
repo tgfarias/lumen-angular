@@ -33,22 +33,26 @@
                 <legend>Resultado de Consulta</legend>
 
                 <table class="table table-bordered">
+                  <thead>
                   <tr>
-                    <td>Descrição</td>
-                    <td>SIGLA</td>
-                    <td>E-mail de atendimento</td>
-                    <td>URL</td>
-                    <td>Status</td>
-                    <td>Ações</td>
+                    <th>Descrição</th>
+                    <th>SIGLA</th>
+                    <th>E-mail de atendimento</th>
+                    <th>URL</th>
+                    <th>Status</th>
+                    <th>Ações</th>
                   </tr>
+                </thead>
+                <tbody>
                   <tr *ngFor="let sis of sistemas" >
                     <td>{{sis.descricao}}</td>
                     <td>{{sis.sigla}}</td>
                     <td>{{sis.email}}</td>
                     <td>{{sis.url}}</td>
                     <td>{{getStatus(sis.status)}}</td>
-                    <td></td>
+                    <td><button class="btn" type="button"><i class="fa fa-edit"></i></button></td>
                   </tr>
+                </tbody>
                 </table>
               </fieldset>
         </div>

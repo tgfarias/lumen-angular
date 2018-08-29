@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class SistemasService {
-  public serverpath = 'http://localhost:8000/';
+  public serverpath = 'http://apitem.local/';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json'

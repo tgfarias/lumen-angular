@@ -29,8 +29,10 @@ export class SistemaSearchComponent implements OnInit {
   search() {
 
     const data = this.rForm.value;
+
+    console.log(this.rForm.getRawValue());
     console.log(data);
-    
+
     // if(data.descricao == "" || data.descricao == null)
     //   data.descricao = null;
     // else
@@ -40,29 +42,28 @@ export class SistemaSearchComponent implements OnInit {
     //   data.sigla == null;
     // else
     //   this.isSearch = true;
-    
+
     // if(data.email = "" || data.email == null)
     //   data.email == null;
     // else
     //   this.isSearch = true;
-    
+
     // if(!this.isSearch)
     //   this.isShowFail = true;
     // else{
 
       console.log(data);
       this.api.searchSistemas(data).subscribe(
-        res => { 
+        res => {
           this.sistemas = res;
-          console.log(this.sistemas);
-          if(this.sistemas.length > 0){
+          if (this.sistemas.length > 0) {
             this.isSearch = true;
-          }
-          else{
+          } else {
             this.isShowFail = true;
           }
         }
       ),
+      // tslint:disable-next-line:no-unused-expression
       err => console.log(err);
     }
   // }

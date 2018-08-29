@@ -15,8 +15,8 @@ export class SistemaCreateComponent implements OnInit {
   success = 'Operação realizada com sucesso.';
   rForm: FormGroup;
   constructor(
-    private fb: FormBuilder, 
-    private api: SistemasService, 
+    private fb: FormBuilder,
+    private api: SistemasService,
     public router: Router) {
     this.rForm = fb.group({
       'descricao': new FormControl('', {validators: [Validators.required], updateOn: 'blur'} ),
@@ -41,15 +41,14 @@ export class SistemaCreateComponent implements OnInit {
 
     this.api.saveSistema(this.sis).subscribe(
       res => {
-        console.log(res);
-      if (res.cod_sistema) {
-        this.saved = true;
-        this.rForm.reset();
-        this.router.navigate(['sistema/search']);
-      }
-    }
-    ),
-    err => console.log(err);
+        if (res.cod_sistema) {
+          this.saved = true;
+          this.rForm.reset();
+          setInterval(() => this.router.navigate(['sistema/search']), 2000);
+        }
+    },
+    err => {console.log(err);
+    });
   }
 
 
