@@ -14,13 +14,32 @@ export class SistemaSearchComponent implements OnInit {
   isShow = false;
   isShowFail = false;
   rForm: FormGroup;
+  patternEmail = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2.4}$';
 
   constructor(private fb: FormBuilder, private api: SistemasService) {
     this.rForm = fb.group({
       'descricao' : new FormControl(),
       'sigla' : new FormControl(),
-      'email' : new FormControl('', { validators: [Validators.email] })
+      'email' : new FormControl(null, { validators: [Validators.pattern(this.patternEmail)]})
     });
+  }
+
+  emailDomainValidator(control: FormControl) {
+    const email = control.value;
+    if (email && email.indexOf('@') !== -1) {
+      const [_, domain] = email.split('@');
+      if (domain && domain.indexOf('.') !== -1) {
+        console.log(domain);
+      }
+      if (domain !== 'codecraft.tv') {
+        return {
+          emailDomain: {
+            parsedDomain: domain
+          }
+        };
+      }
+    }
+    return null;
   }
 
   ngOnInit() {
@@ -51,26 +70,31 @@ export class SistemaSearchComponent implements OnInit {
     // if(!this.isSearch)
     //   this.isShowFail = true;
     // else{
+      if (data.descricao == null && data.sigla == null && data.email == null) {
 
-      console.log(data);
-      this.api.searchSistemas(data).subscribe(
-        res => {
-          this.sistemas = res;
-          if (this.sistemas.length > 0) {
-            this.isSearch = true;
-          } else {
-            this.isShowFail = true;
+      } else {
+        console.log(data);
+        this.api.searchSistemas(data).subscribe(
+          res => {
+            this.sistemas = res;
+            if (this.sistemas.length > 0) {
+              this.isSearch = true;
+            } else {
+              this.isShowFail = true;
+            }
           }
-        }
-      ),
-      // tslint:disable-next-line:no-unused-expression
-      err => console.log(err);
+        ),
+        // tslint:disable-next-line:no-unused-expression
+        err => console.log(err);
+      }
     }
   // }
 
   clear() {
     this.rForm.reset();
-    this.sistemas.length = 0;
+    if (this.sistemas !==  undefined) {
+      this.sistemas.length = 0;
+    }
     this.isSearch = false;
   }
 
