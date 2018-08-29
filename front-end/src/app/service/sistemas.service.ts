@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class SistemasService {
-  public serverpath = 'http://apitem.local/';
+  public serverpath = 'http://localhost:8000/';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
@@ -44,6 +44,6 @@ export class SistemasService {
       'Accept': 'application/json',
     });
 
-    return this.http.post<Sistema[]>(this.serverpath + 'sistemas/search', params, {headers: h} );
+    return this.http.post<any[]>(this.serverpath + 'sistemas/search', params, {headers: h} );
   }
 }

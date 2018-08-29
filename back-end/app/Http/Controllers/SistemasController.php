@@ -19,22 +19,22 @@ class SistemasController extends Controller {
 	}
 
 	public function search(Request $params) {
-		$terms = '';
-		if($params->json()->get('descricao') !== ''){
-			$terms .= 'descricao like %' . $params->json()->get('descricao') .'%';
+		/*$terms = '';
+		if($params->json()->get('descricao') !== null){
+			$terms .= "descricao like \'%" . $params->json()->get('descricao') ."%\'";
 		}
-		else if($params->json()->get('sigla') !== ''){
-			$terms .= 'AND sigla like %' . $params->json()->get('sigla') .'%';
+		else if($params->json()->get('sigla') !== null){
+			$terms .= ' AND sigla like \'%' . $params->json()->get('sigla') .'%\'';
 		}
-		else if($params->json()->get('email') !== ''){
-			$terms .= 'AND email =' . $params->json()->get('email');
+		else if($params->json()->get('email') !== null){
+			$terms .= ' AND email = \'' . $params->json()->get('email') . '\'';
 		}
 		else{
 			return response()->json('Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!');
-		}
+		}*/
 
 
-		$result = $this->sistema->search($terms);
+		$result = $this->sistema->search( $params->json()->all() );
 		return response()->json($result);
 
 	}

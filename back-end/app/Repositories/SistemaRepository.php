@@ -19,8 +19,21 @@ class SistemaRepository implements SistemaInterface{
 
     public function search($params){
 
-        $sistema = Sistema::where($params)
-        ->get();
+        //print_r($params);
+
+        $descricao = $params['descricao'];
+        $sigla = $params['sigla'];
+        $email = $params['email'];
+
+        $sistema = Sistema::when($descricao, function($query) use ($descricao){
+            $query->where('descricao', 'LIKE', '%' . $descricao . '%');
+            })->when($sigla, function($qry) use ($sigla){
+                $qry->where('sigla', 'LIKE', '%' . $sigla . '%');
+            })->when($email, function($q) use ($email){
+                $q->where('email', $email);
+            })
+            ->orderBy('id', 'desc')
+            ->get();
 
         return $sistema;
     }

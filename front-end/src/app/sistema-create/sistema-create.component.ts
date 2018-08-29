@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Sistema } from '../sistema';
+import { Router } from '@angular/router';
 import { SistemasService } from '../service/sistemas.service';
 
 @Component({
@@ -13,7 +14,10 @@ export class SistemaCreateComponent implements OnInit {
   public saved = false;
   success = 'Operação realizada com sucesso.';
   rForm: FormGroup;
-  constructor(private fb: FormBuilder, private api: SistemasService) {
+  constructor(
+    private fb: FormBuilder, 
+    private api: SistemasService, 
+    public router: Router) {
     this.rForm = fb.group({
       'descricao': new FormControl('', {validators: [Validators.required], updateOn: 'blur'} ),
       'sigla': new FormControl('', {validators: [Validators.required, Validators.maxLength(10)], updateOn: 'blur'} ),
@@ -41,8 +45,11 @@ export class SistemaCreateComponent implements OnInit {
       if (res.cod_sistema) {
         this.saved = true;
         this.rForm.reset();
-      }}
-    );
+        this.router.navigate(['sistema/search']);
+      }
+    }
+    ),
+    err => console.log(err);
   }
 
 
