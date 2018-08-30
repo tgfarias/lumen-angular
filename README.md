@@ -1,9 +1,9 @@
 # prova-squadra
 Teste de conhecimento utilizando Lumen e Angular no Front-end
 
-### Passo a passo para construção do projeto - Prova ###
+### Passo a passo para construÃ§Ã£o do projeto - Prova ###
 
-
+### Back-end - Lumen ###
 * Install Composser
 * Install PHP 7 >= 7.1.3
 * Install Lumen - micro framework based Laravel
@@ -18,4 +18,8 @@ Teste de conhecimento utilizando Lumen e Angular no Front-end
 
 * php -S localhost:8000 -t public
 
+### Front-end - Angular 6 ###
 
+* ng update
+
+* ng serve 
