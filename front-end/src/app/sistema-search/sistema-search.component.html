@@ -28,7 +28,7 @@
             </div>
           </div>
         </fieldset>
-        <div id="resultado" *ngIf="isSearch && !isShowFail">
+        <div id="resultado" *ngIf="isSearch">
             <fieldset class="form-group">
                 <legend>Resultado de Consulta</legend>
 
@@ -44,7 +44,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let sis of sistemas" >
+                  <tr *ngFor="let sis of sistemas | paginate: { itemsPerPage: 5, currentPage: p }" >
+                  <!-- <tr *ngFor="let sis of sistemas | paginate: config" > -->
                     <td>{{sis.descricao}}</td>
                     <td>{{sis.sigla}}</td>
                     <td>{{sis.email}}</td>
@@ -52,12 +53,43 @@
                     <td>{{getStatus(sis.status)}}</td>
                     <td><button class="btn" type="button"><i class="fa fa-edit"></i></button></td>
                   </tr>
+                  <tr>
+                    <td colspan="6" class="paginate">
+                      <pagination-controls  *ngIf="sistemas.length > 50" previousLabel=""
+                        nextLabel="" (pageChange)="p = $event" maxSize="10"
+                        directionLinks="true">
+                      </pagination-controls>
+                      <!-- <pagination-template #p="paginationApi"
+                      [id]="config.id"
+                      (pageChange)="config.currentPage = $event">
+
+                      <div class="custom-pagination">
+                        <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+                            <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> < </a>
+                        </div>
+                        <div *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+                            <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                                <span>{{ page.label }}</span>
+                            </a>
+                            <div *ngIf="p.getCurrent() === page.value">
+                                <span>{{ page.label }}</span>
+                            </div>
+                        </div>
+                        <div class="pagination-next" [class.disabled]="p.isLastPage()">
+                            <a *ngIf="!p.isLastPage()" (click)="p.next()"> > </a>
+                            <a *ngIf="!p.isLastPage()" (click)="p.getLastPage()"> >> </a>
+                        </div>
+                    </div>
+                    
+                </pagination-template> -->
+                    </td>
+                  </tr>
                 </tbody>
                 </table>
               </fieldset>
         </div>
-        <div id="error" *ngIf="isShowFail">
-            Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!
+        <div id="noResult" *ngIf="isShowFail">
+            {{messageShow}}
         </div>
       </div>
       <div class="card-footer">

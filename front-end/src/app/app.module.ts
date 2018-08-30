@@ -9,6 +9,7 @@ import { SistemaCreateComponent } from './sistema-create/sistema-create.componen
 import { AppRoutingModule } from './app-routing.module';
 import { SistemaSearchComponent } from './sistema-search/sistema-search.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
+    NgxPaginationModule
   ],
   providers: [SistemasService],
   bootstrap: [AppComponent]

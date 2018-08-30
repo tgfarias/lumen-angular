@@ -12,8 +12,9 @@ import { SistemasService } from '../service/sistemas.service';
 export class SistemaCreateComponent implements OnInit {
   sis: Sistema;
   public saved = false;
-  success = 'Operação realizada com sucesso.';
+  success = 'Operação realizada com sucesso.'; //MN002
   rForm: FormGroup;
+  patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // RN003 - Validação de E-mail
   constructor(
     private fb: FormBuilder,
     private api: SistemasService,
@@ -21,7 +22,7 @@ export class SistemaCreateComponent implements OnInit {
     this.rForm = fb.group({
       'descricao': new FormControl('', {validators: [Validators.required], updateOn: 'blur'} ),
       'sigla': new FormControl('', {validators: [Validators.required, Validators.maxLength(10)], updateOn: 'blur'} ),
-      'email': new FormControl('', {validators: [Validators.email], updateOn: 'blur'} ),
+      'email' : new FormControl('', { validators: [Validators.pattern(this.patternEmail)]}),
       'url' : new FormControl(),
      });
   }
